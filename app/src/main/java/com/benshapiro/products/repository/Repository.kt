@@ -1,5 +1,6 @@
 package com.benshapiro.products.repository
 
+import androidx.lifecycle.LiveData
 import androidx.room.withTransaction
 import com.benshapiro.products.data.SortOrder
 import com.benshapiro.products.data.local.ProductDao
@@ -58,6 +59,10 @@ constructor(
             }
         )
 
+    }
+
+    fun getProductById(id: String): Flow<Model> {
+        return productDao.getProductById(id)
     }
 
 

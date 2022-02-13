@@ -1,5 +1,6 @@
 package com.benshapiro.products.data.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -74,5 +75,8 @@ interface ProductDao {
     // Again this must be a suspend fun, signifying it will utilise coroutines
     @Query("DELETE FROM table_product")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM table_product WHERE id =:id")
+    fun getProductById(id: String) : Flow<Model>
 
 }
