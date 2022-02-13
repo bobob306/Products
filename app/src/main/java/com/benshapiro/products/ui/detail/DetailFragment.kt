@@ -57,11 +57,11 @@ class DetailFragment : Fragment() {
 
         //basically the same as the viewholder in the recyclerview
         //just binds the values we have extraced above to the text and image holders
-        Glide.with(this.requireContext()).load(image).into(binding.productImage)
+        Glide.with(this.requireContext()).load(viewModel.productImage).into(binding.productImage)
 
-        binding.productName.text = name
-        binding.productPrice.text = price.toString()
-        binding.productDesc.text = desc
+        binding.productName.text = viewModel.productName
+        binding.productPrice.text = "£${viewModel.productPrice.toString()}0"
+        binding.productDesc.text = viewModel.productDesc
 
 
 

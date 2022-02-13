@@ -17,6 +17,10 @@ constructor(
 {
 
     val productId = stateHandle.get<Model>("Model")!!.id
+    val productName = stateHandle.get<Model>("Model")!!.name
+    val productImage = stateHandle.get<Model>("Model")!!.image
+    val productPrice = stateHandle.get<Model>("Model")!!.price
+    val productDesc = stateHandle.get<Model>("Model")!!.description
 
     val product = loadProduct()
     private fun loadProduct() : LiveData<Model> {
