@@ -76,7 +76,7 @@ interface ProductDao {
     @Query("DELETE FROM table_product")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM table_product WHERE id =:id")
-    fun getProductById(id: String) : Flow<Model>
+    @Query("SELECT * FROM table_product WHERE id = :id")
+    fun getProductById(id: String): Flow<Model>
 
 }

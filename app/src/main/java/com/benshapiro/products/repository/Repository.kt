@@ -61,10 +61,7 @@ constructor(
 
     }
 
-    fun getProductById(id: String): Flow<Model> {
-        return productDao.getProductById(id)
-    }
-
+    fun getProductById(id: String) = productDao.getProductById(id)
 
     fun searchDatabase(product: String): Flow<List<Model>> {
         return productDao.searchDatabase(product)

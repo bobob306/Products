@@ -1,15 +1,14 @@
 package com.benshapiro.products.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import com.benshapiro.products.databinding.FragmentDetailBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,7 +18,8 @@ class DetailFragment : Fragment() {
     private var detailFragmentBinding: FragmentDetailBinding? = null
     private val binding get() = detailFragmentBinding!!
 
-    private val viewModel: DetailViewModel by viewModels()
+    private val detailViewModel: DetailViewModel by viewModels()
+
     // this is a list of the values we will have passed to the fragment when we navigate to it
     // all set to null initially and updated below
     private var name: String? = null
@@ -38,7 +38,6 @@ class DetailFragment : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.check
 
         //name = viewModel.name
         //price = viewModel.price
@@ -57,12 +56,15 @@ class DetailFragment : Fragment() {
 
         //basically the same as the viewholder in the recyclerview
         //just binds the values we have extraced above to the text and image holders
-        Glide.with(this.requireContext()).load(viewModel.productImage).into(binding.productImage)
 
-        binding.productName.text = viewModel.productName
-        binding.productPrice.text = "£${viewModel.productPrice.toString()}0"
-        binding.productDesc.text = viewModel.productDesc
+        Glide.with(this.requireContext()).load(detailViewModel.productImage).into(binding.productImage)
 
+
+        binding.productName.text = detailViewModel.productName
+        binding.productPrice.text = "£${detailViewModel.productPrice.toString()}0"
+        binding.productDesc.text = detailViewModel.productDesc
+
+        detailViewModel.check
 
 
         return view
