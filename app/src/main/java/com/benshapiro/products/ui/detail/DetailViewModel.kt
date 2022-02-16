@@ -26,6 +26,11 @@ constructor(
     val productPrice = stateHandle.get<Model>("Model")!!.price
     val productDesc = stateHandle.get<Model>("Model")!!.description
 
-    val product = repository.getProductById(productId).asLiveData()
+    val product = loadProduct(productId)
+
+    private fun loadProduct(productId: String): LiveData<Model> {
+        return repository.getProductById(productId).asLiveData()
+    }
+
     val check = Log.d("Check product", "${product.value?.id ?: "id not found"}")
 }
