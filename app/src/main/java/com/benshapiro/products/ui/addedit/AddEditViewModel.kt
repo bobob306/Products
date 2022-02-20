@@ -22,7 +22,7 @@ class AddEditViewModel @Inject constructor(
         repository.getProductById(productId).asLiveData()
     } else {
         // Create a dummy model with no data
-        liveData { Model("", "", R.drawable.ic_baseline_photo_24.toString(), "", 0.0) }
+        liveData { Model("", "", "", "", 0.0) }
     }
 
     fun saveProduct(name: String, price: String, desc: String, image: String) {
@@ -30,10 +30,13 @@ class AddEditViewModel @Inject constructor(
         this is saying, is this a new product with a null Id or an existing product
         then either updating or creating a product as is relevant
          */
-        val currentModel = getNewProductEntry(name, price, desc, image)
+
         if (productId == "null") {
+            val currentModel = getNewProductEntry(name, price, desc, image)
             createProduct(currentModel)
         } else {
+            val currentModel = getUpdatedProduct(name, price, desc, image)
+
             updateProduct(currentModel)
         }
     }
@@ -42,7 +45,16 @@ class AddEditViewModel @Inject constructor(
         return Model(
             id = product.toString(),
             name = name,
-            image = product.value?.image ?: "R.drawable.ic_baseline_photo_24",
+            image = image,
+            description = desc,
+            price = price.toDouble()
+        )
+    }
+    private fun getUpdatedProduct(name: String, price: String, desc: String, image: String): Model {
+        return Model(
+            id = productId,
+            name = name,
+            image = image,
             description = desc,
             price = price.toDouble()
         )
