@@ -53,7 +53,7 @@ constructor(
                 If insert fails for any reason delete will be undone
                  */
                 productDatabase.withTransaction {
-                    productDao.deleteAll()
+                    //productDao.deleteAll()
                     productDao.insert(it)
                 }
             }
@@ -62,6 +62,14 @@ constructor(
     }
 
     fun getProductById(id: String) = productDao.getProductById(id)
+
+    suspend fun insertProduct(currentModel: Model) {
+        productDao.insertNewProduct(currentModel)
+    }
+
+    suspend fun updateProduct(currentModel: Model) {
+        productDao.update(currentModel)
+    }
 
     fun searchDatabase(product: String): Flow<List<Model>> {
         return productDao.searchDatabase(product)

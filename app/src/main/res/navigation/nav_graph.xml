@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_fragmentList_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_fragmentList_to_addEditFragment"
+            app:destination="@id/addEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -24,6 +27,22 @@
             android:defaultValue="@null"
             app:argType="com.benshapiro.products.model.Model"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_detailFragment_to_addEditFragment"
+            app:destination="@id/addEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditFragment"
+        android:name="com.benshapiro.products.ui.addedit.AddEditFragment"
+        android:label="AddEditFragment" >
+        <argument
+            android:name="Model"
+            app:argType="com.benshapiro.products.model.Model"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_addEditFragment_to_fragmentList"
+            app:destination="@id/fragmentList" />
     </fragment>
 
 </navigation>

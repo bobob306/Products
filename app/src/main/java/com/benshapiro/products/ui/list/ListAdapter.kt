@@ -7,6 +7,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.benshapiro.products.R
 import com.benshapiro.products.model.Model
+import com.benshapiro.products.model.getFormattedPrice
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.grid_item_layout.view.*
 
@@ -62,7 +63,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ProductViewHolder>() {
             // glide is particularly good for caching
             Glide.with(itemView).load(model.image).into(itemView.productImage)
             itemView.productName.text = model.name
-            itemView.productPrice.text = "£${model.price}0"
+            itemView.productPrice.text = model.getFormattedPrice()
 
             // this says what should happen if an item is clicked on
             // in this case you navigate (go to) another fragment and send some data over too

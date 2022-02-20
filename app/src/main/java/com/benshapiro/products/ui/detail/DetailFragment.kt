@@ -9,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asFlow
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.benshapiro.products.databinding.FragmentDetailBinding
 import com.benshapiro.products.model.Model
+import com.benshapiro.products.model.getFormattedPrice
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -86,7 +88,11 @@ class DetailFragment : Fragment() {
         binding.productDesc.text = detailViewModel.productDesc
          */
 
-        detailViewModel.check
+        binding.floatingActionButton.setOnClickListener {
+            val action = DetailFragmentDirections.actionDetailFragmentToAddEditFragment()
+            action.model = detailViewModel.product.value
+            Navigation.findNavController(it).navigate(action)
+        }
 
 
         return view
@@ -115,7 +121,7 @@ class DetailFragment : Fragment() {
 
 
         binding.productName.text = detailViewModel.product.value?.name ?: "name not found"
-        binding.productPrice.text = "£${detailViewModel.product.value?.price.toString()}0"
+        binding.productPrice.text = detailViewModel.product.value?.getFormattedPrice() ?: "price not found"
         binding.productDesc.text = detailViewModel.product.value?.description ?: "desc not found"
     }
 
