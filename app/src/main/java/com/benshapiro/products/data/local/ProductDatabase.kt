@@ -12,7 +12,7 @@ First argument 'entities' tells us which table/s are in the database
 Version number tells us what version the datbase is, if we change properties of the database you MUST update the version number
 Ideally one would migrate the database so you do not lose the values
  */
-@Database(entities = [Model::class], version = 1)
+@Database(entities = [Model::class], version = 2)
 abstract class ProductDatabase : RoomDatabase() {
 
     /*
