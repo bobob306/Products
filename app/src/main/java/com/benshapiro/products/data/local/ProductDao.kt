@@ -1,9 +1,7 @@
 package com.benshapiro.products.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.benshapiro.products.model.Model
 import com.benshapiro.products.data.SortOrder
 import kotlinx.coroutines.flow.Flow
@@ -23,8 +21,14 @@ interface ProductDao {
     In this case the operation would merely be a few miliseconds, but it is still necessary
      */
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(model: List<Model>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNewProduct(model: Model)
+
+    @Update
+    suspend fun update(model: Model)
 
     /*
     This is a flowchart using a when statement to decide what order the list should be sorted in
@@ -74,5 +78,8 @@ interface ProductDao {
     // Again this must be a suspend fun, signifying it will utilise coroutines
     @Query("DELETE FROM table_product")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM table_product WHERE id = :id")
+    fun getProductById(id: String): Flow<Model>
 
 }

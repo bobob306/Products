@@ -1,5 +1,6 @@
 package com.benshapiro.products.repository
 
+import androidx.lifecycle.LiveData
 import androidx.room.withTransaction
 import com.benshapiro.products.data.SortOrder
 import com.benshapiro.products.data.local.ProductDao
@@ -52,7 +53,7 @@ constructor(
                 If insert fails for any reason delete will be undone
                  */
                 productDatabase.withTransaction {
-                    productDao.deleteAll()
+                    //productDao.deleteAll()
                     productDao.insert(it)
                 }
             }
@@ -60,6 +61,15 @@ constructor(
 
     }
 
+    fun getProductById(id: String) = productDao.getProductById(id)
+
+    suspend fun insertProduct(currentModel: Model) {
+        productDao.insertNewProduct(currentModel)
+    }
+
+    suspend fun updateProduct(currentModel: Model) {
+        productDao.update(currentModel)
+    }
 
     fun searchDatabase(product: String): Flow<List<Model>> {
         return productDao.searchDatabase(product)

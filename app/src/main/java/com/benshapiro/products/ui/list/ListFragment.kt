@@ -6,10 +6,12 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.benshapiro.products.R
 import com.benshapiro.products.data.SortOrder
 import com.benshapiro.products.databinding.FragmentListBinding
+import com.benshapiro.products.ui.detail.DetailFragmentDirections
 import com.benshapiro.products.utilities.Resource
 import com.benshapiro.products.utilities.onQueryTextChanged
 import com.google.android.material.snackbar.Snackbar
@@ -59,6 +61,11 @@ class ListFragment : Fragment() {
             // tell us to show progress bar only if state is loading AND there is no data
             binding.progressSpinner.isVisible =
                 response is Resource.Loading && response.data.isNullOrEmpty()
+        }
+
+        binding.floatingActionButton.setOnClickListener {
+            val action = ListFragmentDirections.actionFragmentListToAddEditFragment()
+            Navigation.findNavController(it).navigate(action)
         }
 
         /**
