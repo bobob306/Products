@@ -47,7 +47,9 @@ class AddEditViewModel @Inject constructor(
             name = name,
             image = image,
             description = desc,
-            price = price.toDouble()
+            price = price.toDouble(),
+            // Just set every item to unbookmarked to begin with
+            bookmark = 0
         )
     }
     private fun getUpdatedProduct(name: String, price: String, desc: String, image: String): Model {
@@ -56,7 +58,8 @@ class AddEditViewModel @Inject constructor(
             name = name,
             image = image,
             description = desc,
-            price = price.toDouble()
+            price = price.toDouble(),
+            bookmark = product.value!!.bookmark
         )
     }
 

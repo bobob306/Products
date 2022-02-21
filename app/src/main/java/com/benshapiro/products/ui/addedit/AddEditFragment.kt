@@ -41,7 +41,6 @@ class AddEditFragment : Fragment() {
         }
 
         binding.saveBtn.setOnClickListener {
-            Log.d("image", addEditViewModel.product.value?.image ?: "image not found")
             addEditViewModel.saveProduct(
                 nameET.text.toString(),
                 priceET.text.toString(),
