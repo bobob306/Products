@@ -36,7 +36,6 @@ class AddEditViewModel @Inject constructor(
             createProduct(currentModel)
         } else {
             val currentModel = getUpdatedProduct(name, price, desc, image)
-
             updateProduct(currentModel)
         }
     }
