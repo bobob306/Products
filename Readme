@@ -1,11 +1,8 @@
-Hi Nabhan, and possibly Alex and Adam,
+Hi,
 
-I've tried to strike a balance in my comments between informative and espousing my views!
-I'm aware that you mentioned there is not much kotlin experience on the team, so I have added a lot of comments, possibly explaining some parts in more detail than is necessary.
-On the other hand I may have taken for granted some knowledge, so maybe we can talk this through later on?
+I've tried to strike a balance in my comments between informative and too much.
 
-I've gone for a very clean and fairly basic app architecture so that you can see how I code, rather than including loads of features which to be honest would also be just as standard as the architecture
-Let me know if you'd like to see some more features e.g. adding more or editing current items in the database
+I've gone for a very clean and fairly basic app architecture so that you can see how I code, rather than including loads of features which to be honest would also be just as standard as the architecture.
 
 I've filled the database using a file hosted on amazonws, this is just because it is something I think you mentioned in the interview
 
@@ -16,6 +13,8 @@ Dependency injection with dagger hilt
     -   the way it is setup means if there is some data cached the app will work offline, I believe that is helpful for the full fibre application
 MVVM architecture with repository
     -   to communicate between the ui and the data stored in the database
+    -   viewmodel per fragment
+    -   communication between viewmodels using savedStateHandle
 DataBinding
     -   to fill the ui with updating data from the viewmodel
 Fragments in activities
@@ -26,8 +25,8 @@ Preferences manager
     -   to store preferences expressed in the ui between the app opening and closing
 
 On the design side, I haven't added many comments because there isn't a lot to say because you can just see it so easily!
-I hope the card design is something you like, but I could send you a row design instead.
-In that case I would include a little bit of the desc and use a short function to include the first 50-100 chars.
+Gone for a card design instead of a row layout
+In a row layout I would include a little bit of the desc and use a short function to include the first 50-100 chars.
 I like to have rounded corners on my cards
 I haven't made many other style choices
 
