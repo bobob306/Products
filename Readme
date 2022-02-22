@@ -10,7 +10,7 @@ Just for a list of techniques/elements I've used
 Dependency injection with dagger hilt
     -   implements a RESTful API to take data from network
     -   provides reusable components that can be used throughout application with as few specific parts as possible
-    -   the way it is setup means if there is some data cached the app will work offline, I believe that is helpful for the full fibre application
+    -   the way it is setup means if there is some data cached the app will work offline
 MVVM architecture with repository
     -   to communicate between the ui and the data stored in the database
     -   viewmodel per fragment
